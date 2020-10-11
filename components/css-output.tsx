@@ -55,6 +55,12 @@ export const CssOutput: FC<CssOutputProps> = ({
       >
         Download
       </a>
+      <style jsx>{`
+        pre {
+          white-space: pre-wrap;
+          word-wrap: break-word;
+        }
+      `}</style>
       <style jsx global>{`
         body {
           ${bodyCss}

@@ -57,7 +57,23 @@ export default function Home(): JSX.Element {
         <CssOutput {...{ colors, paused, swathSize, timePerSwath }} />
       </main>
 
-      <style jsx>{``}</style>
+      <style jsx>{`
+        .container {
+          min-height: 100vh;
+          max-width: 100%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+
+        main {
+          background: white;
+          padding: 2rem;
+          margin: 4rem 0.5rem;
+          border-radius: 5px;
+          box-shadow: 0 0 0 5px rgba(255, 255, 255, 0.25);
+        }
+      `}</style>
 
       <style jsx global>{`
         html,
