@@ -22,7 +22,7 @@ Developing works best if you use an IDE with TypeScript and ESLint support built
 npm run dev
 ```
 
-The server will preview your changes at http://localhost:3000/css-rainbow-animator and refresh the components as you do changes.
+The server will preview your changes at <http://localhost:3000/css-rainbow-animator> and refresh the components as you do changes.
 
 Before committing, you should run the linters, just in case you missed something:
 
