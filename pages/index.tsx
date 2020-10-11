@@ -2,10 +2,12 @@ import Head from 'next/head';
 import { useCallback, useState } from 'react';
 import { useColors, ColorsPicker } from '../components/colors';
 import { CssOutput } from '../components/css-output';
+import { SwathSize } from '../components/swath-size';
 
 export default function Home(): JSX.Element {
   const [colors, dispatchColors] = useColors();
   const [paused, setPaused] = useState(false);
+  const [swathSize, setSwathSize] = useState(1);
 
   const togglePaused = useCallback(() => {
     setPaused(!paused);
@@ -28,8 +30,9 @@ export default function Home(): JSX.Element {
           CSS Rainbow Animator
         </h1>
         <ColorsPicker {...{ colors, dispatchColors }} />
+        <SwathSize {...{ swathSize, setSwathSize }} />
         <button onClick={togglePaused}>{paused ? 'play' : 'pause'}</button>
-        <CssOutput {...{ colors, paused }} />
+        <CssOutput {...{ colors, paused, swathSize }} />
       </main>
 
       <style jsx>{``}</style>

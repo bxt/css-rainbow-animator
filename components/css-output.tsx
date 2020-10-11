@@ -3,11 +3,15 @@ import { FC } from 'react';
 type CssOutputProps = {
   paused: boolean;
   colors: Array<string>;
+  swathSize: number;
 };
 
-export const CssOutput: FC<CssOutputProps> = ({ paused, colors }) => {
+export const CssOutput: FC<CssOutputProps> = ({
+  paused,
+  colors,
+  swathSize,
+}) => {
   const count = colors.length;
-  const swathSize = 5;
   const timePerSwath = 1;
 
   const backgroundSize = count * swathSize;
