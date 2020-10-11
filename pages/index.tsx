@@ -1,10 +1,13 @@
 import Head from 'next/head';
+
 import { useCallback, useState } from 'react';
 import css from 'styled-jsx/css';
 import { useColors, ColorsPicker } from '../components/colors';
 import { CssOutput } from '../components/css-output';
 import { Button } from '../components/button';
 import { RangeAndInvertedRange } from '../components/range-and-inverted-range';
+
+const basePath = (process.env.__NEXT_ROUTER_BASEPATH as string) || '';
 
 export default function Home(): JSX.Element {
   const [colors, dispatchColors] = useColors();
@@ -20,7 +23,7 @@ export default function Home(): JSX.Element {
     <div className="container">
       <Head>
         <title>CSS Rainbow Animator</title>
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href={`${basePath}/favicon.ico`} />
       </Head>
 
       <main>
@@ -28,7 +31,7 @@ export default function Home(): JSX.Element {
           <img
             alt="CSS Rainbow Animator Logo"
             className="logo"
-            src="/rainbow.svg"
+            src={`${basePath}/rainbow.svg`}
           />
           CSS Rainbow Animator
         </h1>
