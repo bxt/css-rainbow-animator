@@ -1,8 +1,15 @@
 import Head from 'next/head';
+import { useCallback, useState } from 'react';
 import { useColors, ColorsPicker } from '../components/colors';
+import { CssOutput } from '../components/css-output';
 
 export default function Home(): JSX.Element {
   const [colors, dispatchColors] = useColors();
+  const [paused, setPaused] = useState(false);
+
+  const togglePaused = useCallback(() => {
+    setPaused(!paused);
+  }, [paused]);
 
   return (
     <div className="container">
@@ -21,6 +28,8 @@ export default function Home(): JSX.Element {
           CSS Rainbow Animator
         </h1>
         <ColorsPicker {...{ colors, dispatchColors }} />
+        <button onClick={togglePaused}>{paused ? 'play' : 'pause'}</button>
+        <CssOutput {...{ colors, paused }} />
       </main>
 
       <style jsx>{``}</style>
@@ -37,31 +46,6 @@ export default function Home(): JSX.Element {
           padding: 0;
           margin: 0;
         }
-
-        body {
-          background: linear-gradient(
-            90deg,
-            ${[...colors, ...colors.slice(0, 2)].join(',')}
-          );
-          background-size: 100% 100%;
-
-          -webkit-animation: doublerainbows 3s linear infinite;
-          -moz-animation: doublerainbows 3s linear infinite;
-          animation: doublerainbows 3s linear infinite;
-        }
-        /*
-      @-webkit-keyframes doublerainbows {
-          from {background-position:0% 50%}
-          to {background-position:100% 50%}
-      }
-      @-moz-keyframes doublerainbows {
-        from {background-position:0% 50%}
-        to {background-position:100% 50%}
-      }
-      @keyframes doublerainbows {
-        from {background-position:0% 50%}
-        to {background-position:100% 50%}
-      } */
       `}</style>
     </div>
   );
