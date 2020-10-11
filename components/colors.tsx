@@ -13,12 +13,35 @@ type ColorsAction =
   | { type: 'CHANGE_COLOR'; index: number; color: Color };
 
 const initialColors: Colors = ['#ff9900', '#9900ff', '#00ff99'];
-const defaultNewColor: Color = '#ff0000';
+
+const somewhatRandomColor = (() => {
+  const pick = <T extends unknown>(array: Array<T>): T =>
+    array[Math.floor(Math.random() * array.length)];
+
+  const shuffle = <T extends unknown>(array: Array<T>): Array<T> =>
+    array
+      .map((x: T) => [x, Math.random()] as const)
+      .sort((a, b) => a[1] - b[1])
+      .map((a) => a[0]);
+
+  const lowHexDigits = ['0', '4'];
+  const highHexDigits = ['c', 'f'];
+  const hexDigits = [...lowHexDigits, ...highHexDigits];
+
+  return (): Color => {
+    const bits = [
+      `${pick(highHexDigits)}${pick(hexDigits)}`,
+      `${pick(lowHexDigits)}${pick(hexDigits)}`,
+      `${pick(lowHexDigits)}${pick(hexDigits)}`,
+    ];
+    return `#${shuffle(bits).join('')}`;
+  };
+})();
 
 const colorsReducer = (state: Colors, action: ColorsAction) => {
   switch (action.type) {
     case 'ADD_COLOR':
-      return [...state, defaultNewColor];
+      return [...state, somewhatRandomColor()];
     case 'REMOVE_LAST_COLOR':
       return state.slice(0, -1);
     case 'CHANGE_COLOR':
