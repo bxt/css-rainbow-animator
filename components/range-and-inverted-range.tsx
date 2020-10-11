@@ -1,13 +1,13 @@
 import { FC, useCallback } from 'react';
 
+import { ValuePreview } from './value-preview';
+
 type RangeAndInvertedRangeProps = {
   value: number;
   onChange: (newValue: number) => void;
   label: string;
   invertedLabel: string;
 };
-
-const roundForDisplay = (number: number) => Math.round(number * 100) / 100;
 
 export const RangeAndInvertedRange: FC<RangeAndInvertedRangeProps> = ({
   value,
@@ -44,9 +44,10 @@ export const RangeAndInvertedRange: FC<RangeAndInvertedRangeProps> = ({
           step="0.25"
         />
       </label>
-      {roundForDisplay(1 / value)}
-
+      <ValuePreview value={1 / value} />
+      <span className="alternative-indicator">or</span>
       <br />
+
       <label>
         {label}
         <input
@@ -58,8 +59,13 @@ export const RangeAndInvertedRange: FC<RangeAndInvertedRangeProps> = ({
           step="0.25"
         />
       </label>
-
-      {roundForDisplay(value)}
+      <ValuePreview value={value} />
+      <style jsx>{`
+        input,
+        .alternative-indicator {
+          margin: 0 0.25rem 0 1rem;
+        }
+      `}</style>
     </>
   );
 };

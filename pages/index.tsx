@@ -1,7 +1,9 @@
 import Head from 'next/head';
 import { useCallback, useState } from 'react';
+import css from 'styled-jsx/css';
 import { useColors, ColorsPicker } from '../components/colors';
 import { CssOutput } from '../components/css-output';
+import { Button } from '../components/button';
 import { RangeAndInvertedRange } from '../components/range-and-inverted-range';
 
 export default function Home(): JSX.Element {
@@ -22,7 +24,7 @@ export default function Home(): JSX.Element {
       </Head>
 
       <main>
-        <h1 className="title">
+        <h1>
           <img
             src="/rainbow.svg"
             alt="CSS Rainbow Animator Logo"
@@ -30,10 +32,12 @@ export default function Home(): JSX.Element {
           />
           CSS Rainbow Animator
         </h1>
+
         <fieldset>
           <legend>Colors</legend>
           <ColorsPicker {...{ colors, dispatchColors }} />
         </fieldset>
+
         <fieldset>
           <legend>Swath size</legend>
           <RangeAndInvertedRange
@@ -43,51 +47,113 @@ export default function Home(): JSX.Element {
             invertedLabel="Swaths per screen:"
           />
         </fieldset>
+
         <fieldset>
           <legend>Animation</legend>
           <RangeAndInvertedRange
             value={timePerSwath}
             onChange={setTimePerSwath}
-            label="Seconds per swath"
-            invertedLabel="Swaths per second"
+            label="Seconds per swath:"
+            invertedLabel="Swaths per second:"
           />
           <br />
-          <button onClick={togglePaused}>{paused ? 'play' : 'pause'}</button>
+          <Button onClick={togglePaused}>{paused ? 'play' : 'pause'}</Button>
         </fieldset>
-        <CssOutput {...{ colors, paused, swathSize, timePerSwath }} />
+
+        <fieldset>
+          <legend>Result</legend>
+          <CssOutput {...{ colors, paused, swathSize, timePerSwath }} />
+        </fieldset>
       </main>
 
-      <style jsx>{`
-        .container {
-          min-height: 100vh;
-          max-width: 100%;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-        }
-
-        main {
-          background: white;
-          padding: 2rem;
-          margin: 4rem 0.5rem;
-          border-radius: 5px;
-          box-shadow: 0 0 0 5px rgba(255, 255, 255, 0.25);
-        }
-      `}</style>
-
-      <style jsx global>{`
-        html,
-        body {
-          font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
-            Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue,
-            sans-serif;
-        }
-
-        * {
-          padding: 0;
-          margin: 0;
-        }
-      `}</style>
+      <style jsx>{styles}</style>
+      <style jsx global>
+        {globalStyles}
+      </style>
     </div>
   );
 }
+
+const styles = css`
+  .container {
+    min-height: 100vh;
+    max-width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  main,
+  .logo {
+    background: white;
+    border-radius: 5px;
+    box-shadow: 0 0 0 5px rgba(255, 255, 255, 0.25);
+  }
+
+  main {
+    padding: 1rem 2rem 2rem 2rem;
+    margin: 7rem 0.5rem;
+    position: relative;
+  }
+
+  @media (min-width: 768px) {
+    main {
+      padding: 2rem 4rem 4rem 4rem;
+    }
+  }
+
+  .logo {
+    padding: 1rem 1rem 0 1rem;
+    position: absolute;
+    top: -50px;
+    left: 50%;
+    margin-left: -40px;
+  }
+
+  @media (min-width: 768px) {
+    .logo {
+      padding: 2rem 2rem 0 2rem;
+      margin-left: -56px;
+    }
+  }
+
+  h1 {
+    font-size: 20px;
+    text-align: center;
+    margin-bottom: 0.5rem;
+  }
+
+  @media (min-width: 768px) {
+    h1 {
+      font-size: 48px;
+      margin-bottom: 1rem;
+    }
+  }
+
+  fieldset {
+    padding-top: 0.5rem;
+    margin-bottom: 1.5rem;
+    border: none;
+  }
+
+  legend {
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #999;
+    font-size: 0.7em;
+  }
+`;
+
+export const globalStyles = css.global`
+  html,
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+      Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+    line-height: 1.6;
+  }
+
+  * {
+    padding: 0;
+    margin: 0;
+  }
+`;

@@ -1,5 +1,8 @@
 import { Dispatch, FC, useCallback, useReducer } from 'react';
 
+import { ValuePreview } from './value-preview';
+import { Button } from './button';
+
 type Color = string;
 
 type Colors = Array<Color>;
@@ -74,13 +77,41 @@ export const ColorsPicker: FC<ColorsPickerProps> = ({
   }, [dispatchColors]);
 
   return (
-    <>
-      {colors.length}
-      <button onClick={addColor}>+</button>
-      <button onClick={removeColor}>-</button>
-      {colors.map((color, index) => (
-        <ColorPicker key={index} {...{ color, index, dispatchColors }} />
-      ))}
-    </>
+    <div className="colors">
+      <ValuePreview value={colors.length} />
+      <span className="buttons">
+        <Button onClick={addColor}>+</Button>
+        <Button onClick={removeColor}>-</Button>
+      </span>
+      <div className="color-pickers">
+        {colors.map((color, index) => (
+          <ColorPicker key={index} {...{ color, index, dispatchColors }} />
+        ))}
+      </div>
+      <style jsx>{`
+        .colors {
+          display: flex;
+          align-items: flex-start;
+        }
+        .buttons {
+          margin: 0 1rem;
+        }
+        .buttons :global(button:first-child) {
+          border-top-right-radius: 0;
+          border-bottom-right-radius: 0;
+        }
+        .buttons :global(button:last-child) {
+          border-left: 0;
+          border-top-left-radius: 0;
+          border-bottom-left-radius: 0;
+        }
+        .color-pickers {
+          max-width: 400px;
+        }
+        .color-pickers :global(input) {
+          margin: 0 0.125rem;
+        }
+      `}</style>
+    </div>
   );
 };
