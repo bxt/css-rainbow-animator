@@ -74,14 +74,13 @@ export const ColorsPicker: FC<ColorsPickerProps> = ({
   }, [dispatchColors]);
 
   return (
-    <fieldset>
-      <legend>Colors</legend>
+    <>
       {colors.length}
       <button onClick={addColor}>+</button>
       <button onClick={removeColor}>-</button>
       {colors.map((color, index) => (
         <ColorPicker key={index} {...{ color, index, dispatchColors }} />
       ))}
-    </fieldset>
+    </>
   );
 };

@@ -4,15 +4,16 @@ type CssOutputProps = {
   paused: boolean;
   colors: Array<string>;
   swathSize: number;
+  timePerSwath: number;
 };
 
 export const CssOutput: FC<CssOutputProps> = ({
   paused,
   colors,
   swathSize,
+  timePerSwath,
 }) => {
   const count = colors.length;
-  const timePerSwath = 1;
 
   const backgroundSize = count * swathSize;
   const duration = timePerSwath * count;
