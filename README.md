@@ -1,4 +1,4 @@
-CSS Rainbow Animator
+CSS Rainbow Animator ![CI](https://github.com/bxt/css-rainbow-animator/workflows/CI/badge.svg)
 ====================
 
 This is a small web app that allows you to generate animated rainbow gradients. Simply configure all the parameters you need and then click on download to get a web site that will just display your gradient animation. If you are not in the mood for rainbows, that's also fine, you can adjust colors and speeds as you wish. In any way you can create your own light mood for meditation, listening to music, whatever.
