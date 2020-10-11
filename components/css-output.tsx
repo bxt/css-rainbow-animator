@@ -20,20 +20,20 @@ export const CssOutput: FC<CssOutputProps> = ({
   const endPosition = backgroundSize / (backgroundSize - 1);
 
   const bodyCss = `
-    background: linear-gradient(
-      90deg,
-      ${[...colors, ...colors.slice(0, 1)].join(',')}
-    );
-    background-size: ${backgroundSize * 100}% ${backgroundSize * 100}%;
+      background: linear-gradient(
+        90deg,
+        ${[...colors, ...colors.slice(0, 1)].join(',')}
+      );
+      background-size: ${backgroundSize * 100}% ${backgroundSize * 100}%;
 
-    animation: doublerainbows ${duration}s linear infinite;
-    animation-play-state: ${paused ? 'paused' : 'running'};
-`;
+      animation: doublerainbows ${duration}s linear infinite;
+  `;
 
   const css = `
     body {
       ${bodyCss}
     }
+
     @keyframes doublerainbows {
       from {
         background-position: 0% 50%;
@@ -44,13 +44,23 @@ export const CssOutput: FC<CssOutputProps> = ({
     }
   `;
 
+  const html = `<style>${css}\n</style>`;
+
   return (
     <>
       <pre>{css}</pre>
+      <a
+        href={`data:text/html,${encodeURIComponent(html)}`}
+        download="animated-rainbow.html"
+      >
+        Download
+      </a>
       <style jsx global>{`
         body {
           ${bodyCss}
+          animation-play-state: ${paused ? 'paused' : 'running'};
         }
+
         @keyframes doublerainbows {
           from {
             background-position: 0% 50%;
