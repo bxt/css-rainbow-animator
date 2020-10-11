@@ -3,17 +3,17 @@ import { FC, useCallback } from 'react';
 import { ValuePreview } from './value-preview';
 
 type RangeAndInvertedRangeProps = {
-  value: number;
-  onChange: (newValue: number) => void;
-  label: string;
   invertedLabel: string;
+  label: string;
+  onChange: (newValue: number) => void;
+  value: number;
 };
 
 export const RangeAndInvertedRange: FC<RangeAndInvertedRangeProps> = ({
-  value,
-  onChange,
-  label,
   invertedLabel,
+  label,
+  onChange,
+  value,
 }) => {
   const onChangeRegular = useCallback(
     (event) => {
@@ -36,12 +36,12 @@ export const RangeAndInvertedRange: FC<RangeAndInvertedRangeProps> = ({
       <label>
         {invertedLabel}
         <input
-          type="range"
-          onChange={onChangeInverted}
-          value={isInverted ? 1 / value : 1}
-          min="1"
           max="15"
+          min="1"
+          onChange={onChangeInverted}
           step="0.25"
+          type="range"
+          value={isInverted ? 1 / value : 1}
         />
       </label>
       <ValuePreview value={1 / value} />
@@ -51,12 +51,12 @@ export const RangeAndInvertedRange: FC<RangeAndInvertedRangeProps> = ({
       <label>
         {label}
         <input
-          type="range"
-          onChange={onChangeRegular}
-          value={isInverted ? 1 : value}
-          min="1"
           max="10"
+          min="1"
+          onChange={onChangeRegular}
           step="0.25"
+          type="range"
+          value={isInverted ? 1 : value}
         />
       </label>
       <ValuePreview value={value} />

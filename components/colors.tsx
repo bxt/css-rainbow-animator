@@ -9,8 +9,8 @@ type Colors = Array<Color>;
 
 type ColorsAction =
   | { type: 'ADD_COLOR' }
-  | { type: 'REMOVE_LAST_COLOR' }
-  | { type: 'CHANGE_COLOR'; index: number; color: Color };
+  | { type: 'CHANGE_COLOR'; index: number; color: Color }
+  | { type: 'REMOVE_LAST_COLOR' };
 
 const initialColors: Colors = ['#ff9900', '#9900ff', '#00ff99'];
 
@@ -20,7 +20,7 @@ const somewhatRandomColor = (() => {
 
   const shuffle = <T extends unknown>(array: Array<T>): Array<T> =>
     array
-      .map((x: T) => [x, Math.random()] as const)
+      .map((x) => [x, Math.random()] as const)
       .sort((a, b) => a[1] - b[1])
       .map((a) => a[0]);
 
@@ -56,8 +56,8 @@ const colorsReducer = (state: Colors, action: ColorsAction) => {
 
 type ColorPickerProps = {
   color: Color;
-  index: number;
   dispatchColors: Dispatch<ColorsAction>;
+  index: number;
 };
 
 const ColorPicker: FC<ColorPickerProps> = ({

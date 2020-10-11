@@ -2,15 +2,15 @@ import { FC, useCallback, useState } from 'react';
 import css from 'styled-jsx/css';
 
 type CssOutputProps = {
-  paused: boolean;
   colors: Array<string>;
+  paused: boolean;
   swathSize: number;
   timePerSwath: number;
 };
 
 export const CssOutput: FC<CssOutputProps> = ({
-  paused,
   colors,
+  paused,
   swathSize,
   timePerSwath,
 }) => {

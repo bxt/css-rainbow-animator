@@ -26,9 +26,9 @@ export default function Home(): JSX.Element {
       <main>
         <h1>
           <img
-            src="/rainbow.svg"
             alt="CSS Rainbow Animator Logo"
             className="logo"
+            src="/rainbow.svg"
           />
           CSS Rainbow Animator
         </h1>
@@ -41,20 +41,20 @@ export default function Home(): JSX.Element {
         <fieldset>
           <legend>Swath size</legend>
           <RangeAndInvertedRange
-            value={swathSize}
-            onChange={setSwathSize}
-            label="Swath with in screen sizes:"
             invertedLabel="Swaths per screen:"
+            label="Swath with in screen sizes:"
+            onChange={setSwathSize}
+            value={swathSize}
           />
         </fieldset>
 
         <fieldset>
           <legend>Animation</legend>
           <RangeAndInvertedRange
-            value={timePerSwath}
-            onChange={setTimePerSwath}
-            label="Seconds per swath:"
             invertedLabel="Swaths per second:"
+            label="Seconds per swath:"
+            onChange={setTimePerSwath}
+            value={timePerSwath}
           />
           <br />
           <Button onClick={togglePaused}>{paused ? 'play' : 'pause'}</Button>
@@ -76,11 +76,11 @@ export default function Home(): JSX.Element {
 
 const styles = css`
   .container {
-    min-height: 100vh;
-    max-width: 100%;
+    align-items: center;
     display: flex;
     justify-content: center;
-    align-items: center;
+    max-width: 100%;
+    min-height: 100vh;
   }
 
   main,
@@ -91,8 +91,8 @@ const styles = css`
   }
 
   main {
-    padding: 1rem 2rem 2rem 2rem;
     margin: 7rem 0.5rem;
+    padding: 1rem 2rem 2rem 2rem;
     position: relative;
   }
 
@@ -103,24 +103,24 @@ const styles = css`
   }
 
   .logo {
+    left: 50%;
+    margin-left: -40px;
     padding: 1rem 1rem 0 1rem;
     position: absolute;
     top: -50px;
-    left: 50%;
-    margin-left: -40px;
   }
 
   @media (min-width: 768px) {
     .logo {
-      padding: 2rem 2rem 0 2rem;
       margin-left: -56px;
+      padding: 2rem 2rem 0 2rem;
     }
   }
 
   h1 {
     font-size: 20px;
-    text-align: center;
     margin-bottom: 0.5rem;
+    text-align: center;
   }
 
   @media (min-width: 768px) {
@@ -137,10 +137,10 @@ const styles = css`
   }
 
   legend {
-    font-weight: bold;
-    text-transform: uppercase;
     color: #999;
     font-size: 0.7em;
+    font-weight: bold;
+    text-transform: uppercase;
   }
 `;
 
@@ -153,7 +153,7 @@ export const globalStyles = css.global`
   }
 
   * {
-    padding: 0;
     margin: 0;
+    padding: 0;
   }
 `;
