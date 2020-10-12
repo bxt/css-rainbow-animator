@@ -67,6 +67,11 @@ export default function Home(): JSX.Element {
           <legend>Result</legend>
           <CssOutput {...{ colors, paused, swathSize, timePerSwath }} />
         </fieldset>
+
+        <footer>
+          Created 2020 by Bernhard Häussner – Code on{' '}
+          <a href="https://github.com/bxt/css-rainbow-animator">GitHub</a>
+        </footer>
       </main>
 
       <style jsx>{styles}</style>
@@ -144,6 +149,12 @@ const styles = css`
     font-size: 0.7em;
     font-weight: bold;
     text-transform: uppercase;
+  }
+
+  footer {
+    color: #999;
+    font-size: 0.7em;
+    text-align: right;
   }
 `;
 
