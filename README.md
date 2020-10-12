@@ -37,3 +37,5 @@ npm run build
 ```
 
 That's it!
+
+There are some GitHub actions to lint and build the app, as well as deploy the `main` branch to GitHub pages at <https://bxt.github.io/css-rainbow-animator/>.
