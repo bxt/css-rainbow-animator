@@ -52,7 +52,7 @@ export const CssOutput: FC<CssOutputProps> = ({
     }
   `;
 
-  const html = `<style>${css}\n</style>`;
+  const html = `<style>${css}\n</style>\n\n${fullscreenHelperScript}`;
 
   return (
     <>
@@ -101,4 +101,20 @@ const styles = css`
     background: #ddd;
     border-radius: 5px;
   }
+`;
+
+const fullscreenHelperScript = `
+<script>
+  document.addEventListener("click", toggleFullScreen, false);
+
+  function toggleFullScreen() {
+    if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen();
+    } else {
+      if (document.exitFullscreen) {
+        document.exitFullscreen();
+      }
+    }
+  }
+</script>
 `;
