@@ -24,6 +24,19 @@ export const CssOutput: FC<CssOutputProps> = ({
   const count = colors.length;
 
   const backgroundSize = count * swathSize;
+
+  if (backgroundSize === 1) {
+    return (
+      <CssOutput
+        {...{
+          colors: [...colors, ...colors],
+          paused,
+          swathSize,
+          timePerSwath,
+        }}
+      />
+    );
+  }
   const duration = timePerSwath * count;
   const endPosition = backgroundSize / (backgroundSize - 1);
 
